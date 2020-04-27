@@ -11,36 +11,52 @@
 export default {
   name: 'ImagePreview',
   props: {
-    text: {
-      type: String,
-      default: ''
+    inputText: {
+      type: Object,
+      default: () => {}
     }
   },
   data: () => ({
     ctx: null
   }),
   watch: {
-    text() {
-      this.draw(this.text)
-      const canvas = document.getElementById('canvas')
-      this.$emit('changeCanvas', canvas)
+    inputText: {
+      handler: function(val) {
+        this.draw(this.inputText)
+        const canvas = document.getElementById('canvas')
+        this.$emit('changeCanvas', canvas)
+      },
+      deep: true
     }
   },
   methods: {
-    draw(text) {
-      const lines = text.split('\n')
-      const fontSize = 36
-      const lineHeight = 1.2
-
-      // this.ctx.beginPath()
-      this.ctx.font = `bold ${fontSize}px sans-serif`
+    draw(inputText) {
+      const { name, text } = inputText
       this.ctx.clearRect(0, 0, canvas.width, canvas.height)
+      this.drawName(name)
+      this.drawText(text)
+    },
+    drawName(name) {
+      this.ctx.beginPath()
+      const fontSize = 36
+      this.ctx.font = `bold ${fontSize}px sans-serif`
+      this.ctx.fillText(name, 10, 40)
+    },
+    drawText(text) {
+      this.ctx.beginPath()
+      const lines = text.split('\n')
+      const fontSize = 24
+      const lineHeight = 1.2
+      const positionX = 10
+      const positionY = 70
 
-      // 改行処理
+      this.ctx.font = `bold ${fontSize}px sans-serif`
+
+      // divide each line
       lines.map((line, index) => {
         let addY = fontSize
         addY += fontSize * lineHeight * index
-        this.ctx.fillText(line, 10, 10 + addY)
+        this.ctx.fillText(line, positionX, positionY + addY)
       })
     }
   },

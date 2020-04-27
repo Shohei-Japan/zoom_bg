@@ -1,13 +1,12 @@
 <template>
-  <div class="flex mb-4">
-    
+  <div class="flex mt-12 px-12">
     <div
-      class="w-2/3 bg-gray-400 h-auto"
+      class="w-2/3 h-auto mr-2"
     >
-      <div class="image_preview_wrapper flex justify-center relative ">
+      <div class="image_preview_wrapper flex justify-center items-center relative">
         <image-preview
-          class="image_preview"
-          :text="text"
+          class="image_preview border border-gray-200"
+          :input-text="inputText"
           @changeCanvas="changeCanvas"
         />
         <img
@@ -16,11 +15,36 @@
         >
       </div>
     </div>
-    <div class="w-1/3 bg-gray-500 h-auto">
-      <textarea
-        v-model="text"
-      />
-      <button @click="download">button</button>
+
+    <div class="w-1/3 h-auto">
+      <div class="px-4 flex justify-center flex-col">
+        <label>
+          <span>Name</span>
+          <input
+            v-model="inputText.name"
+            class="inline-block w-full border border-gray-500 rounded mb-2 p-2"
+          >
+        </label>
+        <div>
+          <span>Text</span>
+          <textarea
+            v-model="inputText.text"
+            class="block w-full h-48 border border-gray-500 rounded mb-4 p-2"
+          />
+          <p
+            v-if="errorMessage"
+            class="text-red-600 bold"
+          >
+            {{ errorMessage }}
+          </p>
+        </div>
+        <button
+          class="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded"
+          @click="download"
+        >
+          画像ダウンロード
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -33,15 +57,30 @@ export default {
     ImagePreview
   },
   data: () => ({
-    radius: 50,
+    inputText: {
+      name: '',
+      text: ''
+    },
     canvasData: null,
-    text: ''
+    errorMessage: null,
   }),
+  watch: {
+    // delete error message if text is filled.
+    'text'() {
+      if (this.text) {
+        this.errorMessage = null
+      }
+    }
+  },
   methods: {
     changeCanvas(canvasData) {
       this.canvasData = canvasData
     },
     download() {
+      if (!this.text) {
+        this.errorMessage = 'テキストを入力してください'
+        return
+      }
       const link = document.createElement('a')
       link.href = this.canvasData.toDataURL('image/png')
       link.download = 'bg.png'
