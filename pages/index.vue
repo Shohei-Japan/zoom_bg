@@ -4,45 +4,58 @@
       class="w-2/3 h-auto mr-2"
     >
       <div class="image_preview_wrapper flex justify-center items-center relative mb-4">
-        <image-preview
-          class="image_preview border border-gray-200"
-          :form-data="formData"
-          @changeCanvas="changeCanvas"
-        />
-        <img
-          class="person_img absolute bottom-0 my-0 mx-auto"
-          src="~/assets/image/person.svg"
+        <label for="color">
+          <image-preview
+            class="image_preview border border-gray-200"
+            :form-data="formData"
+            @changeCanvas="changeCanvas"
+          />
+          <img
+            class="person_img absolute bottom-0 my-0 mx-auto"
+            src="~/assets/image/person.svg"
         >
+        </label>
       </div>
 
-      <div class="toggle_wrapper pl-5">
-        <input
-          id="toggle"
-          class="toggle_input"
-          type='checkbox'
-          @change="changeSide"
-        />
-        <label
-          for="toggle"
-          class="toggle_label"
-        />
+      <input
+        v-model="formData.color"
+        class="color_input w-24 h-8"
+        id="color"
+        type="color"
+      >
+
+      <div class="flex items-center">
+        <div class="toggle_wrapper pl-5">
+          <input
+            id="toggle"
+            class="toggle_input"
+            type='checkbox'
+            @change="changeSide"
+          />
+          <label
+            for="toggle"
+            class="toggle_label"
+          />
+        </div>
       </div>
     </div>
 
     <div class="w-1/3 h-auto">
       <div class="px-4 flex justify-center flex-col">
         <label>
-          <span>Name</span>
+          <span>名前</span>
           <input
             v-model="formData.name"
+            placeholder="名前を入力"
             class="inline-block w-full border border-gray-500 rounded mb-2 p-2"
           >
         </label>
-        <div>
-          <span>Text</span>
+        <div class="mb-4">
+          <span>自己紹介</span>
           <textarea
             v-model="formData.text"
-            class="block w-full h-48 border border-gray-500 rounded mb-4 p-2"
+            class="block w-full h-48 border border-gray-500 rounded p-2"
+            :placeholder="textareaPlaceholder"
           />
           <p
             v-if="errorMessage"
@@ -90,6 +103,11 @@ export default {
       deep: true
     }
   },
+  computed: {
+    textareaPlaceholder() {
+      return '・職業\n・趣味\n・好きな音楽\n・犬派？猫派？'
+    }
+  },
   methods: {
     changeSide() {
       if (this.formData.side === 'left') {
@@ -103,7 +121,7 @@ export default {
     },
     download() {
       if (!this.formData.name || !this.formData.text) {
-        this.errorMessage = 'テキストを入力してください'
+        this.errorMessage = '名前と自己紹介を入力してください'
         return
       }
       const link = document.createElement('a')
@@ -116,6 +134,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.color_input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
 .person_img {
   height: 90%;
 
