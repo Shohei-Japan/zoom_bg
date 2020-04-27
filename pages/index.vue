@@ -1,75 +1,90 @@
 <template>
-  <div class="flex mt-12 px-12">
-    <div
-      class="w-2/3 h-auto mr-2"
-    >
-      <div class="image_preview_wrapper flex justify-center items-center relative mb-4">
-        <label for="color">
-          <image-preview
-            class="image_preview border border-gray-200"
-            :form-data="formData"
-            @changeCanvas="changeCanvas"
-          />
-          <img
-            class="person_img absolute bottom-0 my-0 mx-auto"
-            src="~/assets/image/person.svg"
+  <div class="p-8">
+    <div class="flex flex-col items-center mb-12">
+      <h1 class="text-5xl">Zoom 自己紹介背景メーカー</h1>
+      <span>
+        created by 
+        <a
+          href="https://twitter.com/show60"
+          target="_blank"
+          class="text-indigo-600 hover:text-indigo-800"
         >
-        </label>
-      </div>
-
-      <input
-        v-model="formData.color"
-        class="color_input w-24 h-8"
-        id="color"
-        type="color"
-      >
-
-      <div class="flex items-center">
-        <div class="toggle_wrapper pl-5">
-          <input
-            id="toggle"
-            class="toggle_input"
-            type='checkbox'
-            @change="changeSide"
-          />
-          <label
-            for="toggle"
-            class="toggle_label"
-          />
-        </div>
-      </div>
+          show60
+        </a>
+      </span>
     </div>
-
-    <div class="w-1/3 h-auto">
-      <div class="px-4 flex justify-center flex-col">
-        <label>
-          <span>名前</span>
-          <input
-            v-model="formData.name"
-            placeholder="名前を入力"
-            class="inline-block w-full border border-gray-500 rounded mb-2 p-2"
+    <div class="flex">
+      <div
+        class="w-2/3 h-auto mr-2"
+      >
+        <div class="image_preview_wrapper flex justify-center items-center relative">
+          <label for="color">
+            <image-preview
+              class="image_preview border border-gray-200"
+              :form-data="formData"
+              @changeCanvas="changeCanvas"
+            />
+            <img
+              class="person_img absolute bottom-0 my-0 mx-auto"
+              src="~/assets/image/person.svg"
           >
-        </label>
-        <div class="mb-4">
-          <span>自己紹介</span>
-          <textarea
-            v-model="formData.text"
-            class="block w-full h-48 border border-gray-500 rounded p-2"
-            :placeholder="textareaPlaceholder"
-          />
-          <p
-            v-if="errorMessage"
-            class="text-red-600 bold"
-          >
-            {{ errorMessage }}
-          </p>
+          </label>
         </div>
-        <button
-          class="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded"
-          @click="download"
+
+        <input
+          v-model="formData.color"
+          class="color_input w-24 h-8"
+          id="color"
+          type="color"
         >
-          画像ダウンロード
-        </button>
+
+        <div class="flex items-center">
+          <div class="toggle_wrapper pl-8">
+            <input
+              id="toggle"
+              class="toggle_input"
+              type='checkbox'
+              @change="changeSide"
+            />
+            <label
+              for="toggle"
+              class="toggle_label"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="w-1/3 h-auto">
+        <div class="px-4 flex justify-center flex-col">
+          <label>
+            <span>名前</span>
+            <input
+              v-model="formData.name"
+              placeholder="名前を入力"
+              class="inline-block w-full border border-gray-500 rounded mb-2 p-2"
+            >
+          </label>
+          <div class="mb-4">
+            <span>自己紹介</span>
+            <textarea
+              v-model="formData.text"
+              class="block w-full h-48 border border-gray-500 rounded p-2"
+              :placeholder="textareaPlaceholder"
+            />
+            <p
+              v-if="errorMessage"
+              class="text-red-600 bold"
+            >
+              {{ errorMessage }}
+            </p>
+          </div>
+          <button
+            class="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded"
+            @click="download"
+          >
+            画像ダウンロード
+          </button>
+        </div>
       </div>
     </div>
   </div>
