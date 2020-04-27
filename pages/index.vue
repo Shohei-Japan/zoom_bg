@@ -1,77 +1,62 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        self_introduction_bg
-      </h1>
-      <h2 class="subtitle">
-        My finest Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
+  <div class="flex mb-4">
+    
+    <div
+      class="w-2/3 bg-gray-400 h-auto"
+    >
+      <div class="image_preview_wrapper flex justify-center relative ">
+        <image-preview
+          class="image_preview"
+          :text="text"
+          @changeCanvas="changeCanvas"
+        />
+        <img
+          class="person_img absolute bottom-0 my-0 mx-auto"
+          src="~/assets/image/person.svg"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
       </div>
+    </div>
+    <div class="w-1/3 bg-gray-500 h-auto">
+      <textarea
+        v-model="text"
+      />
+      <button @click="download">button</button>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import ImagePreview from '~/components/ImagePreview'
 
 export default {
   components: {
-    Logo
+    ImagePreview
+  },
+  data: () => ({
+    radius: 50,
+    canvasData: null,
+    text: ''
+  }),
+  methods: {
+    changeCanvas(canvasData) {
+      this.canvasData = canvasData
+    },
+    download() {
+      const link = document.createElement('a')
+      link.href = this.canvasData.toDataURL('image/png')
+      link.download = 'bg.png'
+      link.click()
+    }
   }
 }
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style lang="scss" scoped>
+.person_img {
+  height: 90%;
+
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
