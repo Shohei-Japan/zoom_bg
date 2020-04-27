@@ -40,6 +40,13 @@ export default {
     },
     initBackgroundColor: "rgb(49, 137, 248)"
   }),
+  mounted() {
+    // able to access canvas DOM in mounted
+    this.ctx = this.$el.getContext('2d')
+    this.ctx.scale(2,2)
+    // set initial color
+    this.changeBackgroundColor("rgb(49, 137, 248)")
+  },
   watch: {
     formData: {
       handler: function() {
@@ -99,13 +106,6 @@ export default {
       this.ctx.fillStyle = "rgb(255, 255, 255)"
       this.ctx.fillRect(textareaPositionX[this.formData.side], 20, 220, 320)
     }
-  },
-  mounted() {
-    // able to access canvas DOM in mounted
-    this.ctx = this.$el.getContext('2d')
-    this.ctx.scale(2,2)
-    // set initial color
-    this.changeBackgroundColor("rgb(49, 137, 248)")
   }
 }
 </script>

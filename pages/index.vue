@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8">
+  <div class="p-8 max-w-screen-lg my-0 mx-auto">
     <div class="flex flex-col items-center mb-12">
       <h1 class="text-5xl">Zoom 自己紹介背景メーカー</h1>
       <span>
@@ -39,7 +39,7 @@
         >
 
         <div class="flex items-center">
-          <div class="toggle_wrapper pl-8">
+          <div class="toggle_wrapper pl-5">
             <input
               id="toggle"
               class="toggle_input"
@@ -107,6 +107,12 @@ export default {
     canvasData: null,
     errorMessage: null,
   }),
+  mounted() {
+    const localStorageData = localStorage.getItem('zoom-bg-maker')
+    if (localStorageData) {
+      this.formData = JSON.parse(localStorageData)
+    }
+  },
   watch: {
     // delete error message if text is filled.
     formData: {
@@ -139,6 +145,8 @@ export default {
         this.errorMessage = '名前と自己紹介を入力してください'
         return
       }
+      
+      localStorage.setItem('zoom-bg-maker', JSON.stringify(this.formData))
       const link = document.createElement('a')
       link.href = this.canvasData.toDataURL('image/png')
       link.download = 'bg.png'
