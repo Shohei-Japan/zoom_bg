@@ -8,6 +8,11 @@
 </template>
 
 <script>
+const textareaPositionX = {
+  right: 400,
+  left: 20
+}
+
 export default {
   name: 'ImagePreview',
   props: {
@@ -21,14 +26,14 @@ export default {
     nameStyle: {
       fontSize: 24,
       position: {
-        x: 30,
+        x: 10,
         y: 55
       }
     },
     textareaStyle: {
       fontSize: 18,
       position: {
-        x: 30,
+        x: 10,
         y: 80
       },
       lineHeight: 1.5
@@ -60,13 +65,18 @@ export default {
       const fontSize = this.nameStyle.fontSize
       this.ctx.font = `bold ${fontSize}px sans-serif`
       this.ctx.fillStyle = "rgb(40, 40, 40)"
-      this.ctx.fillText(name, this.nameStyle.position.x, this.nameStyle.position.y)
+
+      const x = this.nameStyle.position.x + textareaPositionX[this.formData.side]
+      const y = this.nameStyle.position.y
+
+      this.ctx.fillText(name, x, y)
     },
     drawTextarea(text) {
       this.ctx.beginPath()
       const lines = text.split('\n')
       const { fontSize, lineHeight } = this.textareaStyle
-      const { x, y } = this.textareaStyle.position
+      const x = this.textareaStyle.position.x + textareaPositionX[this.formData.side]
+      const y = this.textareaStyle.position.y
 
       this.ctx.font = `${fontSize}px sans-serif`
       this.ctx.fillStyle = "rgb(40, 40, 40)"
@@ -87,9 +97,7 @@ export default {
       // text area
       this.ctx.beginPath()
       this.ctx.fillStyle = "rgb(255, 255, 255)"
-      this.ctx.fillRect(20, 20, 240, 320)
-    },
-    changeTextPosition() {
+      this.ctx.fillRect(textareaPositionX[this.formData.side], 20, 220, 320)
     }
   },
   mounted() {
