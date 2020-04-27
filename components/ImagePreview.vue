@@ -11,18 +11,34 @@
 export default {
   name: 'ImagePreview',
   props: {
-    inputText: {
+    formData: {
       type: Object,
       default: () => {}
     }
   },
   data: () => ({
-    ctx: null
+    ctx: null,
+    nameStyle: {
+      fontSize: 24,
+      position: {
+        x: 30,
+        y: 55
+      }
+    },
+    textareaStyle: {
+      fontSize: 18,
+      position: {
+        x: 30,
+        y: 80
+      },
+      lineHeight: 1.5
+    },
+    initBackgroundColor: "rgb(49, 137, 248)"
   }),
   watch: {
-    inputText: {
-      handler: function(val) {
-        this.draw(this.inputText)
+    formData: {
+      handler: function() {
+        this.draw(this.formData)
         const canvas = document.getElementById('canvas')
         this.$emit('changeCanvas', canvas)
       },
@@ -30,40 +46,58 @@ export default {
     }
   },
   methods: {
-    draw(inputText) {
-      const { name, text } = inputText
+    draw(formData) {
+      const { name, text } = formData
       this.ctx.clearRect(0, 0, canvas.width, canvas.height)
+      // call methods adjusting styles
+      this.changeBackgroundColor(this.formData.color || this.initBackgroundColor)
+
       this.drawName(name)
-      this.drawText(text)
+      this.drawTextarea(text)
     },
     drawName(name) {
       this.ctx.beginPath()
-      const fontSize = 36
+      const fontSize = this.nameStyle.fontSize
       this.ctx.font = `bold ${fontSize}px sans-serif`
-      this.ctx.fillText(name, 10, 40)
+      this.ctx.fillStyle = "rgb(40, 40, 40)"
+      this.ctx.fillText(name, this.nameStyle.position.x, this.nameStyle.position.y)
     },
-    drawText(text) {
+    drawTextarea(text) {
       this.ctx.beginPath()
       const lines = text.split('\n')
-      const fontSize = 24
-      const lineHeight = 1.2
-      const positionX = 10
-      const positionY = 70
+      const { fontSize, lineHeight } = this.textareaStyle
+      const { x, y } = this.textareaStyle.position
 
-      this.ctx.font = `bold ${fontSize}px sans-serif`
+      this.ctx.font = `${fontSize}px sans-serif`
+      this.ctx.fillStyle = "rgb(40, 40, 40)"
 
       // divide each line
       lines.map((line, index) => {
         let addY = fontSize
         addY += fontSize * lineHeight * index
-        this.ctx.fillText(line, positionX, positionY + addY)
+        this.ctx.fillText(line, x, y + addY)
       })
+    },
+    changeBackgroundColor(color) {
+      // background
+      this.ctx.beginPath()
+      this.ctx.fillStyle = color
+      this.ctx.fillRect(0, 0, 1280, 720)
+
+      // text area
+      this.ctx.beginPath()
+      this.ctx.fillStyle = "rgb(255, 255, 255)"
+      this.ctx.fillRect(20, 20, 240, 320)
+    },
+    changeTextPosition() {
     }
   },
   mounted() {
-    // mounted 以降で canvas の DOM にアクセスできる
+    // able to access canvas DOM in mounted
     this.ctx = this.$el.getContext('2d')
     this.ctx.scale(2,2)
+    // set initial color
+    this.changeBackgroundColor("rgb(49, 137, 248)")
   }
 }
 </script>

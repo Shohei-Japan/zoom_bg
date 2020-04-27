@@ -6,7 +6,7 @@
       <div class="image_preview_wrapper flex justify-center items-center relative">
         <image-preview
           class="image_preview border border-gray-200"
-          :input-text="inputText"
+          :form-data="formData"
           @changeCanvas="changeCanvas"
         />
         <img
@@ -21,14 +21,14 @@
         <label>
           <span>Name</span>
           <input
-            v-model="inputText.name"
+            v-model="formData.name"
             class="inline-block w-full border border-gray-500 rounded mb-2 p-2"
           >
         </label>
         <div>
           <span>Text</span>
           <textarea
-            v-model="inputText.text"
+            v-model="formData.text"
             class="block w-full h-48 border border-gray-500 rounded mb-4 p-2"
           />
           <p
@@ -57,19 +57,24 @@ export default {
     ImagePreview
   },
   data: () => ({
-    inputText: {
+    formData: {
       name: '',
-      text: ''
+      text: '',
+      side: 'left',
+      color: ''
     },
     canvasData: null,
     errorMessage: null,
   }),
   watch: {
     // delete error message if text is filled.
-    'text'() {
-      if (this.text) {
-        this.errorMessage = null
-      }
+    formData: {
+      handler: function() {
+        if (this.formData.name && this.formData.text) {
+          this.errorMessage = null
+        }
+      },
+      deep: true
     }
   },
   methods: {
@@ -77,7 +82,7 @@ export default {
       this.canvasData = canvasData
     },
     download() {
-      if (!this.text) {
+      if (!this.formData.name || !this.formData.text) {
         this.errorMessage = 'テキストを入力してください'
         return
       }
