@@ -1,22 +1,21 @@
 <template>
   <div class="max-w-screen-lg mt-6 mx-auto p-8">
     <app-title class="mb-12" />
-
-    <div class="grid grid-cols-3 grid-rows-2 gap-4">
+    <div class="grid grid-cols-3 grid-rows-8 gap-4">
       <canvas-wrapper
-        class="col-span-3 lg:col-span-2 row-start-1"
+        class="col-span-3 sm:col-span-3 lg:col-span-2 row-start-1"
         :form-data="formData"
         :update-canvas="updateCanvas"
       />
 
       <input-switch-side
-        class="col-span-1 lg:col-start-1"
+        class="col-span-3 sm:col-span-1 lg:col-start-1"
         :checked="formData.side === 'right'"
         :change-side="changeSide"
       />
 
       <input-wrapper
-        class="col-span-2 lg:row-start-1"
+        class="col-span-3 sm:col-span-2 lg:row-start-1"
         :form-data="formData"
         :error-message="errorMessage"
         :textarea-place-holder="textareaPlaceholder"

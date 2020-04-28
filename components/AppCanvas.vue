@@ -66,7 +66,7 @@ export default {
       handler: function() {
         this.draw(this.formData)
         const canvas = document.getElementById('canvas')
-        this.updateCanvas()
+        this.updateCanvas(canvas)
       },
       deep: true
     }

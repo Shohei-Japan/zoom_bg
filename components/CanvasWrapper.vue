@@ -1,6 +1,6 @@
 <template>
   <div class="canvas_wrapper">
-    <div class="image_preview_wrapper flex justify-center items-center relative">
+    <div class="flex justify-center items-center max-w-screen-md my-0 mx-auto relative">
       <label for="color">
         <app-canvas
           class="image_preview border border-gray-200"
@@ -39,7 +39,7 @@ export default {
       type: Function,
       default: () => {}
     }
-  }  
+  }
 }
 </script>
 

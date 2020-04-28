@@ -1,6 +1,6 @@
 <template>
   <div class="input_switch_side">
-    <div class="toggle_wrapper pl-5">
+    <div class="toggle_wrapper pl-12 lg:pl-5">
       <input
         id="toggle"
         class="toggle_input"
