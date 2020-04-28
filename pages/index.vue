@@ -44,6 +44,7 @@
               id="toggle"
               class="toggle_input"
               type='checkbox'
+              :checked="this.formData.side === 'right' ? 'checked' : ''"
               @change="changeSide"
             />
             <label
