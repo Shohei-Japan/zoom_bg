@@ -2,27 +2,27 @@
   <div class="max-w-screen-lg mt-6 mx-auto p-8">
     <app-title class="mb-12" />
 
-    <div class="flex mb-2">
+    <div class="grid grid-cols-3 grid-rows-2 gap-2">
       <canvas-wrapper
-        class="w-2/3 h-auto mr-2"
+        class="col-span-3 lg:col-span-2 row-start-1"
         :form-data="formData"
         :update-canvas="updateCanvas"
       />
 
+      <input-switch-side
+        class="col-span-1 lg:col-start-1"
+        :checked="formData.side === 'right'"
+        :change-side="changeSide"
+      />
+
       <input-wrapper
-        class="w-1/3 h-auto"
+        class="col-span-2 lg:row-start-1"
         :form-data="formData"
         :error-message="errorMessage"
         :textarea-place-holder="textareaPlaceholder"
         :download-image="downloadImage"
       />
     </div>
-
-    <input-switch-side
-      class="flex items-center"
-      :side="formData.side"
-      :change-side="changeSide"
-    />
   </div>
 </template>
 
@@ -97,6 +97,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

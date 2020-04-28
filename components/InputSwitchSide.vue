@@ -5,7 +5,7 @@
         id="toggle"
         class="toggle_input"
         type='checkbox'
-        :checked="side === 'right' ? 'checked' : ''"
+        :checked="checked ? 'checked' : ''"
         @change="changeSide"
       />
       <label
@@ -20,9 +20,9 @@
 export default {
   name: 'InputSwitchSide',
   props: {
-    side: {
-      type: String,
-      default: ''
+    checked: {
+      type: Boolean,
+      default: false
     },
     changeSide: {
       type: Function,

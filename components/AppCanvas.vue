@@ -1,7 +1,7 @@
 <template>
   <canvas
     id="canvas"
-    class="canvas"
+    class="w-full"
     :width="canvasSize.width"
     :height="canvasSize.height"
   />
@@ -124,10 +124,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.canvas {
-  width: 640px;
-  height: 360px;
-}
-</style>
