@@ -9,7 +9,7 @@
 
 <script>
 const textareaPositionX = {
-  right: 400,
+  right: 390,
   left: 20
 }
 
@@ -31,12 +31,13 @@ export default {
       }
     },
     textareaStyle: {
-      fontSize: 18,
+      fontSize: 16,
       position: {
         x: 10,
         y: 80
       },
-      lineHeight: 1.5
+      lineHeight: 1.5,
+      width: 230
     },
     initBackgroundColor: "rgb(49, 137, 248)"
   }),
@@ -70,7 +71,7 @@ export default {
     drawName(name) {
       this.ctx.beginPath()
       const fontSize = this.nameStyle.fontSize
-      this.ctx.font = `bold ${fontSize}px sans-serif`
+      this.ctx.font = `${fontSize}px Noto Sans JP`
       this.ctx.fillStyle = "rgb(40, 40, 40)"
 
       const x = this.nameStyle.position.x + textareaPositionX[this.formData.side]
@@ -85,7 +86,7 @@ export default {
       const x = this.textareaStyle.position.x + textareaPositionX[this.formData.side]
       const y = this.textareaStyle.position.y
 
-      this.ctx.font = `${fontSize}px sans-serif`
+      this.ctx.font = `lighter ${fontSize}px Noto Sans JP`
       this.ctx.fillStyle = "rgb(40, 40, 40)"
 
       // divide each line
@@ -104,7 +105,7 @@ export default {
       // text area
       this.ctx.beginPath()
       this.ctx.fillStyle = "rgb(255, 255, 255)"
-      this.ctx.fillRect(textareaPositionX[this.formData.side], 20, 220, 320)
+      this.ctx.fillRect(textareaPositionX[this.formData.side], 20, this.textareaStyle.width, 320)
     }
   }
 }

@@ -43,6 +43,7 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-webfontloader'
   ],
   /*
   ** Build configuration
@@ -52,6 +53,11 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  webfontloader: {
+    google: {
+      families: ['Lato:400,700', 'Noto+Sans+JP']
     }
   }
 }
