@@ -2,7 +2,7 @@
   <div class="max-w-screen-lg mt-6 mx-auto p-8">
     <app-title class="mb-12" />
 
-    <div class="grid grid-cols-3 grid-rows-2 gap-2">
+    <div class="grid grid-cols-3 grid-rows-2 gap-4">
       <canvas-wrapper
         class="col-span-3 lg:col-span-2 row-start-1"
         :form-data="formData"
