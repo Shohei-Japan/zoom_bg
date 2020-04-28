@@ -14,10 +14,14 @@ const TextareaPositionX = {
 }
 
 export default {
-  name: 'ImagePreview',
+  name: 'AppCanvas',
   props: {
     formData: {
       type: Object,
+      default: () => {}
+    },
+    updateCanvas: {
+      type: Function,
       default: () => {}
     }
   },
@@ -62,7 +66,7 @@ export default {
       handler: function() {
         this.draw(this.formData)
         const canvas = document.getElementById('canvas')
-        this.$emit('changeCanvas', canvas)
+        this.updateCanvas()
       },
       deep: true
     }
