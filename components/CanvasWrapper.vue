@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="canvas_wrapper">
     <div class="image_preview_wrapper flex justify-center items-center relative">
       <label for="color">
         <app-canvas
