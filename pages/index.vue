@@ -27,7 +27,7 @@
             <img
               class="person_img absolute bottom-0 my-0 mx-auto"
               src="~/assets/image/person.svg"
-          >
+            >
           </label>
         </div>
 
@@ -103,7 +103,7 @@ export default {
       name: '',
       text: '',
       side: 'left',
-      color: ''
+      color: 'rgb(49, 137, 248)'
     },
     canvasData: null,
     errorMessage: null,

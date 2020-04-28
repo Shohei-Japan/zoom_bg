@@ -1,0 +1,43 @@
+$global-font-family: -apple-system, 'Noto Sans JP', BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Sans', Meiryo, sans-serif;
+
+$font-size: 10px;
+
+@function rem($px) {
+  @return #{$px / $font-size}rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #fafbfd;
+  color: #333;
+  font-family: $global-font-family;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+a {
+  color: #2b6cb0;
+  text-decoration: none;
+  transition: 0.2s all;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
+}
+
+p {
+  margin-bottom: 1.2em;
+}
