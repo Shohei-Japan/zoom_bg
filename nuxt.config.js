@@ -71,5 +71,8 @@ export default {
     google: {
       families: ['Lato:400,700', 'Noto+Sans+JP']
     }
+  },
+  generate: {
+    fallback: true
   }
 }
