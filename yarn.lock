@@ -1073,6 +1073,13 @@
     consola "^2.10.1"
     dotenv "^8.1.0"
 
+"@nuxtjs/netlify-files@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/netlify-files/-/netlify-files-1.1.0.tgz#8f5031e342070f2f172e2abee01334095d21c727"
+  integrity sha512-no2UeRBehQ/BTRGJadJzDYF8PxLwCNT32WNcOdwyvaVXWCt76ESJyuYkMs84MsiohZjgEFVg2ETEWBu4wlB0Nw==
+  dependencies:
+    consola "^2.11.3"
+
 "@nuxtjs/tailwindcss@^1.0.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-1.4.0.tgz#351c63659c937213d2e7c47e5ecd0275e0e9f38e"
