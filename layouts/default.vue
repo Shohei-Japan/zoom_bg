@@ -1,8 +1,22 @@
 <template>
   <div>
-    <nuxt />
+    <app-header class="py-4 border-b" />
+    <nuxt class="mb-24 p-8" />
+    <app-footer class="fixed pt-3 pb-4 bottom-0 border-t w-full bg-white" />
   </div>
 </template>
+
+<script>
+import AppHeader from '~/components/AppHeader'
+import AppFooter from '~/components/AppFooter'
+
+export default {
+  components: {
+    AppHeader,
+    AppFooter
+  }
+}
+</script>
 
 <style>
 html {

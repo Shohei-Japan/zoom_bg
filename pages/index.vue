@@ -1,6 +1,5 @@
 <template>
-  <div class="max-w-screen-lg mt-6 mx-auto p-8">
-    <app-title class="mb-12" />
+  <div class="max-w-screen-lg mx-auto">
     <div class="grid grid-cols-3 grid-rows-8 gap-4">
       <canvas-wrapper
         class="col-span-3 sm:col-span-3 lg:col-span-2 row-start-1"
@@ -26,14 +25,12 @@
 </template>
 
 <script>
-import AppTitle from '~/components/AppTitle'
 import CanvasWrapper from '~/components/CanvasWrapper'
 import InputWrapper from '~/components/InputWrapper'
 import InputSwitchSide from '~/components/InputSwitchSide'
 
 export default {
   components: {
-    AppTitle,
     CanvasWrapper,
     InputWrapper,
     InputSwitchSide

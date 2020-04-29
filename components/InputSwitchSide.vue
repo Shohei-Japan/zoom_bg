@@ -34,9 +34,6 @@ export default {
 
 <style lang="scss" scoped>
 .toggle_input {
-  position: absolute;
-  left: 0;
-  top: 0;
   opacity: 0;
   cursor: pointer;
 
