@@ -1,3 +1,3 @@
 export default function({ $gtm, route }) {
-  $gtm.init('GTM-T3NGSTN')
+  $gtm.init(process.env.GTM_ID)
 }

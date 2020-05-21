@@ -52,7 +52,7 @@ export default {
     '@nuxtjs/netlify-files'
   ],
   gtm: {
-    id: 'GTM-T3NGSTN'
+    id: process.env.GTM_ID
   },
   /*
   ** Nuxt.js modules
@@ -79,5 +79,10 @@ export default {
   },
   generate: {
     fallback: true
+  },
+  env: {
+    BASE_URL: process.env.BASE_URL,
+    API_URL: process.env.API_URL,
+    GTM_ID: process.env.GTM_ID
   }
 }
