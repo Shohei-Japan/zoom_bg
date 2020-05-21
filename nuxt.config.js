@@ -40,16 +40,20 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~plugins/ga.js', mode: 'client' }
+    '~/plugins/gtm'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/gtm',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/netlify-files'
   ],
+  gtm: {
+    id: 'GTM-T3NGSTN'
+  },
   /*
   ** Nuxt.js modules
   */

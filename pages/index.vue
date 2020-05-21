@@ -88,6 +88,7 @@ export default {
       const link = document.createElement('a')
       link.href = this.canvasData.toDataURL('image/png')
       link.download = 'bg.png'
+      this.$gtm.push({ event: 'downloadImage' })
       link.click()
     }
   }

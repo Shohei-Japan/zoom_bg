@@ -24,7 +24,7 @@
         </p>
       </div>
       <button
-        class="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded"
+        class="download bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded"
         @click="downloadImage"
       >
         画像ダウンロード
