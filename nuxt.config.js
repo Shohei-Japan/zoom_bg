@@ -52,12 +52,15 @@ export default {
     '@nuxtjs/netlify-files'
   ],
   gtm: {
-    id: process.env.GTM_ID
+    id: 'GTM-T3NGSTN',
+    dev: true,
+    pageTracking: true
   },
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/gtm',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-webfontloader'
