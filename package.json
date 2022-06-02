@@ -15,7 +15,7 @@
     "@nuxtjs/gtm": "^2.4.0",
     "install": "^0.13.0",
     "node-sass": "^6.0.1",
-    "npm": "^7.24.2",
+    "npm": "^8.11.0",
     "nuxt": "^2.15.8",
     "nuxt-webfontloader": "^1.1.0",
     "sass-loader": "^10"
